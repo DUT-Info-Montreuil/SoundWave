@@ -6,9 +6,9 @@ require_once __DIR__ . "/../Vue/UtilisateurVue.php";
 class UtilisateurControleur {
 
 	private UtilisateurRepository $userRepo;
-	private UtilisateurView $userView;
+	private UtilisateurVue $userView;
 
-	public function __construct(UtilisateurRepository $userRepo, UtilisateurView $userView) {
+	public function __construct(UtilisateurRepository $userRepo, UtilisateurVue $userView) {
 		$this->userRepo=$userRepo;
 		$this->userView=$userView;
 	}
@@ -30,16 +30,16 @@ class UtilisateurControleur {
 
         $nom = $_POST['nom'] ?? null;
         $email = $_POST['email'] ?? null;
-        $mdp = $_POST['mdp'] ?? null;
+        $mot_de_passe = $_POST['mot_de_passe'] ?? null;
         if (!is_string($nom) || $nom === ''
             || !is_string($email) || $email === ''
-            || !is_string($mdp) || $mdp === '') {
+            || !is_string($mot_de_passe) || $mot_de_passe === '') {
             die("Paramètre manquant");
         }
 
-        $utilisateurNouv = new Utilisateur(0, $nom, $email, $mdp, 'lecteur');
+        $utilisateurNouv = new Utilisateur(0, $nom, $email, $mot_de_passe, 'Membre');
         $this->userRepo->inscrire($utilisateurNouv);
-        ?><a href="index.php?module=utilisateur&route=formulaire_connexion">Se connecter</a><?php
+        ?><a href="index.php?module=utilisateur&route=formulaireConnexion">Se connecter</a><?php
 		
 	}
 
@@ -58,18 +58,21 @@ class UtilisateurControleur {
         }
 
         $email = $_POST['email'] ?? null;
-        $mdp = $_POST['mdp'] ?? null;
-        if (!is_string($email) || $email === '' || !is_string($mdp) || $mdp === '') {
+        $mot_de_passe = $_POST['mot_de_passe'] ?? null;
+        if (!is_string($email) || $email === '' || !is_string($mot_de_passe) || $mot_de_passe === '') {
             die("Paramètre manquant");
         }
 
 		$user = $this->userRepo->findByEmail($email);
 
-		if ($user !== null && password_verify($mdp, $user->getMdp())) {
+		if ($user !== null && password_verify($mot_de_passe, $user->getMot_de_passe())) {
 			session_regenerate_id(true);
-			$_SESSION['id_utilisateur'] = $user->getId();
+			$_SESSION['id_utilisateur'] = $user->getId_membre();
 			
 		} else {
 			die("Erreur lors de la connexion, email ou mot de passe incorrect");
 		}
 	}
+}
+
+?>

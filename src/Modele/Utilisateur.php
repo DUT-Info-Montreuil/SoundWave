@@ -1,23 +1,23 @@
 <?php
 
 class Utilisateur{
-	private int $id;
+	private int $id_membre;
 	private string $nom;
 	private string $email;
-	private string $mdp;
+	private string $mot_de_passe;
 	private string $role;
 
-	public function __construct(int $id, string $nom, string $email, string $mdp, string $role)
+	public function __construct(int $id_membre, string $nom, string $email, string $mot_de_passe, string $role)
     {
-        $this->id = $id;
+        $this->id_membre = $id_membre;
         $this->nom = $nom;
         $this->email = $email;
-        $this->mdp = $mdp;
+        $this->mot_de_passe = $mot_de_passe;
         $this->role = $role;
     }
 
-    public function getId(): int{
-        return $this->id;
+    public function getId_membre(): int{
+        return $this->id_membre;
     }
 
     public function getNom(): string{
@@ -28,8 +28,8 @@ class Utilisateur{
         return $this->email;
     }
 
-    public function getMdp(): string{
-        return $this->mdp;
+    public function getMot_de_passe(): string{
+        return $this->mot_de_passe;
     }
 
     public function getRole(): string{
@@ -38,11 +38,13 @@ class Utilisateur{
 
     public static function origin(array $utilisateurArray): self{
         return new self(
-            (int) $utilisateurArray['id'],
+            (int) $utilisateurArray['id_membre'],
             $utilisateurArray['nom'],
             $utilisateurArray['email'],
-            $utilisateurArray['mot_de_passe_hash'],
+            $utilisateurArray['mot_de_passe'],
             $utilisateurArray['role']
         );
     }
 }
+
+?>
