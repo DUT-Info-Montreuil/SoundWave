@@ -77,11 +77,10 @@ class PisteRepository extends BDD{
                     p.nombre_ecoutes,
                     genre.nom,
                     p.date_publication,
-                    m.nom AS nom_artiste,
                     g.nom AS nom_groupe
-                FROM Piste p
-                LEFT JOIN Membre m ON p.id_membre = m.id_membre
-                LEFT JOIN Groupe g ON p.id_groupe = g.id_groupe
+                FROM piste p
+                LEFT JOIN auteur a ON a.id_piste = p.id_piste
+                LEFT JOIN groupe g ON a.id_groupe = g.id_groupe
                 INNER JOIN possede_genre ON p.id_piste = possede_genre.id_piste
                 INNER JOIN genre ON possede_genre.id_genre = genre.id_genre
                 WHERE genre.nom = :genre

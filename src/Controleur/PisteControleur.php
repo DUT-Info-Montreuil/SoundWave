@@ -14,7 +14,7 @@ class PisteControleur
         $this->vue = $vue;
     }
 
-    public function liste()
+    public function liste(): void
     {
         $genre = isset($_GET['genre']) ? trim((string) $_GET['genre']) : '';
         $genres = $this->repo->tousLesGenres();

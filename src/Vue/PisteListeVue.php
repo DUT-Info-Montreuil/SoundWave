@@ -4,7 +4,7 @@ require_once __DIR__ . '/../Commun/Vue.php';
 
 class PisteListeVue extends Vue
 {
-    public function afficher($pistes)
+    public function afficher($pistes, $genres, $genreSelectionne)
     {
         $this->debutContenu(); 
         ?>
