@@ -6,9 +6,9 @@ require_once __DIR__ . "/../Vue/UtilisateurVue.php";
 class UtilisateurControleur {
 
 	private UtilisateurRepository $userRepo;
-	private UtilisateurVue $userView;
+	private UtilisateurView $userView;
 
-	public function __construct(UtilisateurRepository $userRepo, UtilisateurVue $userView) {
+	public function __construct(UtilisateurRepository $userRepo, UtilisateurView $userView) {
 		$this->userRepo=$userRepo;
 		$this->userView=$userView;
 	}
@@ -39,7 +39,7 @@ class UtilisateurControleur {
 
         $utilisateurNouv = new Utilisateur(0, $nom, $email, $mdp, 'lecteur');
         $this->userRepo->inscrire($utilisateurNouv);
-        ?><a href="index.php?module=utilisateur&route=formulaireConnexion">Se connecter</a><?php
+        ?><a href="index.php?module=utilisateur&route=formulaire_connexion">Se connecter</a><?php
 		
 	}
 
@@ -73,4 +73,3 @@ class UtilisateurControleur {
 			die("Erreur lors de la connexion, email ou mot de passe incorrect");
 		}
 	}
-}

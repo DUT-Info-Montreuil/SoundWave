@@ -20,8 +20,8 @@ class UtilisateurVue extends Vue{
 				<input type="email" name="email" required>
 			</div>
 			<div>
-				<label for="mdp">Mot de passe : </label>
-				<input type="password" name="mdp" required>
+				<label for="mot_de_passe">Mot de passe : </label>
+				<input type="password" name="mot_de_passe" required>
 			</div>
 			<button type="submit">Envoyer</button>
 		</form>
@@ -40,8 +40,8 @@ class UtilisateurVue extends Vue{
 				<input type="email" name="email" required>
 			</div>
 			<div>
-				<label for="mdp">Mot de passe : </label>
-				<input type="password" name="mdp" required>
+				<label for="mot_de_passe">Mot de passe : </label>
+				<input type="password" name="mot_de_passe" required>
 			</div>
 			<button type="submit">Envoyer</button>
 		</form>
