@@ -67,7 +67,7 @@ class UtilisateurControleur {
 
 		if ($user !== null && password_verify($mot_de_passe, $user->getMot_de_passe())) {
 			session_regenerate_id(true);
-			$_SESSION['id_utilisateur'] = $user->getMot_de_passe();
+			$_SESSION['id_utilisateur'] = $user->getId_membre();
             header('Location: index.php?module=piste&action=liste');
             exit();
 		} else {
