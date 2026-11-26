@@ -39,7 +39,7 @@ class UtilisateurRepository extends BDD {
             }
         }
 
-        if($utilisateur->getRole() !== 'Membre' && $utilisateur->getRole() !=='Administrateur'){
+        if($utilisateur->getRole() !== 'membre' && $utilisateur->getRole() !=='administrateur'){
             die("Le role de l'utilisateur est incorrect.");
         }
 
@@ -57,6 +57,10 @@ class UtilisateurRepository extends BDD {
     }
 
     public function changerRole(int $id, string $role): bool {
+        if($role !== 'membre' && $role !=='administrateur'){
+            die("Le role de l'utilisateur est incorrect.");
+        }
+
         $requete = self::$pdo->prepare("UPDATE membre SET role = :role WHERE id_membre = :id");
         return $requete->execute([
             ':role' => $role,

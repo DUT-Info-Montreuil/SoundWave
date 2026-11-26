@@ -9,7 +9,7 @@ class UtilisateurVue extends Vue{
 		$this->debutContenu();
 		?>
 
-		<form method="post" enctype="multipart/form-data" action="index.php?module=visiteur&route=inscrire">
+		<form method="post" enctype="multipart/form-data" action="index.php?module=visiteur&action=inscrire">
 			<input type="hidden" name="csrf" value="<?= e(Csrf::jeton()) ?>">
 			<div>
 				<label for="nom">Nom : </label>
@@ -23,7 +23,7 @@ class UtilisateurVue extends Vue{
 				<label for="mot_de_passe">Mot de passe : </label>
 				<input type="password" name="mot_de_passe" required>
 			</div>
-			<button type="submit">Envoyer</button>
+			<button type="submit">S'inscrire</button>
 		</form>
 		<?php
 		$this->afficherPage('Inscription');
@@ -33,7 +33,7 @@ class UtilisateurVue extends Vue{
 		$this->debutContenu();
 		?>
 
-		<form method="post" enctype="multipart/form-data" action="index.php?module=visiteur&route=connecter">
+		<form method="post" enctype="multipart/form-data" action="index.php?module=visiteur&action=connecter">
 			<input type="hidden" name="csrf" value="<?= e(Csrf::jeton()) ?>">
 			<div>
 				<label for="email">Email : </label>
@@ -43,7 +43,7 @@ class UtilisateurVue extends Vue{
 				<label for="mot_de_passe">Mot de passe : </label>
 				<input type="password" name="mot_de_passe" required>
 			</div>
-			<button type="submit">Envoyer</button>
+			<button type="submit">Se connecter</button>
 		</form>
 		<?php
 		$this->afficherPage('Connexion');
