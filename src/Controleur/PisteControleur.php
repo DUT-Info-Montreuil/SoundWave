@@ -16,8 +16,8 @@ class PisteControleur
 
     public function liste()
     {
-        $pistes = $this->repo->dernieresPistes(); 
-        $this->vue->afficher($pistes); 
+        $pistes = $this->repo->dernieresPistes();
+        $this->vue->afficher($pistes);
     }
 }
 

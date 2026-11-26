@@ -11,7 +11,7 @@ class Piste{
     private array $tags;
 
 	public function __construct(int $id_piste, string $titre, ?string $description,
-                                int $fichier_audio, int $nombre_ecoutes, string $date_publication,
+                                string $fichier_audio, int $nombre_ecoutes, string $date_publication,
                                 array $genres, array $tags) {
 		$this->id_piste = $id_piste;
 		$this->titre = $titre;
@@ -24,7 +24,7 @@ class Piste{
 	}
 
 	public static function origin(array $pisteArray): self {
-        return new self($pisteArray["id"], $pisteArray["titre"], $pisteArray["description"],
+        return new self($pisteArray["id_piste"], $pisteArray["titre"], $pisteArray["description"],
             $pisteArray["fichier_audio"], $pisteArray["nombre_ecoutes"], $pisteArray["date_publication"],
             $pisteArray["genres"], $pisteArray["tags"]);
     }

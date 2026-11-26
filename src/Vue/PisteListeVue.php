@@ -17,8 +17,9 @@ class PisteListeVue extends Vue
                 <?php foreach ($pistes as $piste): ?>
                     <li>
                         <strong><?= e((string) $piste['titre']) ?></strong>
-                        - Genre : <?= e((string) $piste['nom_genre']) ?>
-                        - Nombre d'écoute : <?= e((string) $piste['nombre_ecoute']) ?>'
+                        - Nombre d'écoutes : <?= e((string) $piste['nombre_ecoutes']) ?>
+                        - Date : <?= e((string) $piste['date_publication']) ?>
+
                     </li>
                 <?php endforeach; ?>
             </ul>

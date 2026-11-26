@@ -14,7 +14,7 @@ class PisteRepository extends BDD{
             "SELECT
                     p.titre,
                     p.nombre_ecoutes,
-                    p.date_publication
+                    STRFTIME('%d/%m/%Y', p.date_publication) AS date_publication
                 FROM piste p
                 ORDER BY 
                     p.date_publication DESC, 
@@ -50,7 +50,7 @@ class PisteRepository extends BDD{
                 JOIN genre USING (id_genre)
                 WHERE piste.id_piste = :id");
         $requeteGenres->execute(['id' => $id]);
-        $pistesTrouvees["genre"] = $requeteGenres->fetchAll(PDO::FETCH_ASSOC);
+        $pistesTrouvees["genres"] = $requeteGenres->fetchAll(PDO::FETCH_ASSOC);
 
         $requeteTags = self::$pdo->prepare(
             "SELECT
