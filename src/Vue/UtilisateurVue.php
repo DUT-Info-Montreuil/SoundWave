@@ -3,7 +3,7 @@ require_once __DIR__ . '/../Commun/Xss.php';
 require_once __DIR__ . '/../Commun/Csrf.php';
 require_once __DIR__ . '/../Commun/Vue.php';
 
-class UtilisateurView extends Vue{
+class UtilisateurVue extends Vue{
 
 	public function formulaireInscription(): void {
 		$this->debutContenu();
