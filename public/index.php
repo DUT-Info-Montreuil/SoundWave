@@ -3,7 +3,6 @@
 session_start();
 ini_set('display_errors', '1');
 
-
 require_once __DIR__ . '/../src/Vue/PisteListeVue.php';
 require_once __DIR__ . '/../src/Modele/PisteRepository.php';
 require_once __DIR__ . '/../src/Controleur/PisteControleur.php';

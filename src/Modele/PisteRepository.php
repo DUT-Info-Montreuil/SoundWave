@@ -12,6 +12,7 @@ class PisteRepository extends BDD{
     public function dernieresPistes() : array {
         $requete = self::$pdo->prepare(
             "SELECT
+                    p.id_piste,
                     p.titre,
                     p.nombre_ecoutes,
                     STRFTIME('%d/%m/%Y', p.date_publication) AS date_publication
@@ -85,19 +86,21 @@ class PisteRepository extends BDD{
     }
     public function pistesParGenre(string $genre): array
     {
-        $requete = self::$pdo->prepare("SELECT
+        $requete = self::$pdo->prepare(
+                "SELECT
+                    p.id_piste,
                     p.titre,
                     p.nombre_ecoutes,
-                    genre.nom,
-                    p.date_publication,
-                    g.nom AS nom_groupe
+                    STRFTIME('%d/%m/%Y', p.date_publication) AS date_publication
                 FROM piste p
-                LEFT JOIN auteur a ON a.id_piste = p.id_piste
-                LEFT JOIN groupe g ON a.id_groupe = g.id_groupe
-                INNER JOIN possede_genre ON p.id_piste = possede_genre.id_piste
-                INNER JOIN genre ON possede_genre.id_genre = genre.id_genre
+                JOIN possede_genre USING (id_piste)
+                JOIN genre USING (id_genre)
                 WHERE genre.nom = :genre
-                ORDER BY p.date_publication DESC, p.id_piste DESC");
+                ORDER BY 
+                    p.date_publication DESC, 
+                    p.id_piste DESC
+                LIMIT 10"
+        );
         $requete->execute(['genre' => $genre]);
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }

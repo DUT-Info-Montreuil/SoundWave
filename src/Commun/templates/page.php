@@ -27,10 +27,10 @@
             <span class="search-icon">🔍</span>
             <input
                     type="text"
-                    name="q"
+                    name="s"
                     class="global-search-input"
                     placeholder="Que souhaitez-vous écouter ? Titre, artiste, groupe, tag, genre..."
-                    value="<?= e((string) ($_GET['q'] ?? '')) ?>"
+                    value="<?= e((string) ($_GET['s'] ?? '')) ?>"
             >
         </form>
     </div>

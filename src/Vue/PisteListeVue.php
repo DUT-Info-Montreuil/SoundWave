@@ -23,10 +23,10 @@ class PisteListeVue extends Vue
 
             <input
                     type="text"
-                    name="q"
+                    name="s"
                     class="filter-input"
                     placeholder="Rechercher : titre, artiste, groupe, tag, genre"
-                    value="<?= e((string) ($_GET['q'] ?? '')) ?>"
+                    value="<?= e((string) ($_GET['s'] ?? '')) ?>"
             >
 
             <select name="genre" id="genre" class="filter-select" aria-label="Genre">
