@@ -35,7 +35,7 @@
         </form>
     </div>
 
-    <?php if(isset($_SESSION['id_utilisateur'])): ?>
+    <?php if(!isset($_SESSION['id_utilisateur'])): ?>
     <div class="topbar-auth">
         <a href="index.php?module=utilisateur&action=formulaireInscription" class="btn-ghost">Inscription</a>
         <a href="index.php?module=utilisateur&action=formulaireConnexion" class="btn-purple">Connexion</a>
