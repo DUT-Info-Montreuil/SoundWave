@@ -29,7 +29,7 @@ class Piste{
             $pisteArray["genres"], $pisteArray["tags"]);
     }
 
-	public function getId_piste(): int {
+	public function getIdPiste(): int {
 		return $this->id_piste;
 	}
 

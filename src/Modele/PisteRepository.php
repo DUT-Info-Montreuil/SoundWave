@@ -64,6 +64,23 @@ class PisteRepository extends BDD{
 
         return Piste::origin($pistesTrouvees);
     }
+
+    public function auteursDe(Piste $piste) : array {
+        $requete = self::$pdo->prepare(
+            "SELECT
+            groupe.nom
+            FROM piste
+            JOIN auteur USING (id_piste)
+            JOIN groupe USING (id_groupe)
+            WHERE piste.id_piste = :id"
+        );
+        $requete->execute(['id' => $piste->getIdPiste()]);
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    private function getIdPiste()
+    {
+    }
 }
 
 
