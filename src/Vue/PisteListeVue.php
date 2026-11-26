@@ -4,7 +4,7 @@ require_once __DIR__ . '/../Commun/Vue.php';
 
 class PisteListeVue extends Vue
 {
-    public function afficher($pistes)
+    public function afficher($pistes, $genres, $genreSelectionne)
     {
         $this->debutContenu();
         ?>
@@ -29,12 +29,13 @@ class PisteListeVue extends Vue
                     value="<?= e((string) ($_GET['q'] ?? '')) ?>"
             >
 
-            <select name="genre" class="filter-select" aria-label="Genre">
-                <option value disabled selected hidden>Genre ▾</option>
-                <option value="Rap" <?= (($_GET['genre'] ?? '') === 'Rap') ? 'selected' : '' ?>>Rap</option>
-                <option value="Electro" <?= (($_GET['genre'] ?? '') === 'Electro') ? 'selected' : '' ?>>Electro</option>
-                <option value="Pop" <?= (($_GET['genre'] ?? '') === 'Pop') ? 'selected' : '' ?>>Pop</option>
-                <option value="Rock" <?= (($_GET['genre'] ?? '') === 'Rock') ? 'selected' : '' ?>>Rock</option>
+            <select name="genre" id="genre" class="filter-select" aria-label="Genre">
+                <option value="">Tous les genres</option>
+                <?php foreach ($genres as $genre): ?>
+                    <option value="<?= e((string) $genre) ?>" <?= $genreSelectionne === $genre ? 'selected' : '' ?>>
+                        <?= e((string) $genre) ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
 
             <select name="tag" class="filter-select" aria-label="Tag">
@@ -70,9 +71,9 @@ class PisteListeVue extends Vue
                                     <?= e((string) $piste['titre']) ?>
                                 </a>
                                 <div class="piste-sous-titre">
-                                    <span>- Nombre d'écoutes : <?= e((string) $piste['nombre_ecoutes']) ?></span>
+                                    <span><?= e((string) $piste['nombre_ecoutes']) ?> écoutes</span>
                                     <span>•</span>
-                                    <span class="badge-genre">- Date : <?= e((string) $piste['date_publication']) ?></span>
+                                    <span class="badge-genre"><?= e((string) $piste['date_publication']) ?></span>
                                 </div>
                             </div>
 

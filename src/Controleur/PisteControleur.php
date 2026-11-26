@@ -14,12 +14,17 @@ class PisteControleur
         $this->vue = $vue;
     }
 
-    public function liste()
+    public function liste(): void
     {
-        $pistes = $this->repo->dernieresPistes();
-        $this->vue->afficher($pistes);
+        $genre = isset($_GET['genre']) ? trim((string) $_GET['genre']) : '';
+        $genres = $this->repo->tousLesGenres();
+
+        if ($genre !== '') {
+            $pistes = $this->repo->pistesParGenre($genre);
+        } else {
+            $pistes = $this->repo->dernieresPistes();
+        }
+
+        $this->vue->afficher($pistes, $genres, $genre);
     }
 }
-
-
-?>
