@@ -33,6 +33,12 @@ $piste = $contexte['piste'] ?? null
             </div>
             <audio id="player" src="../data/pistes/<?= e($piste->getFichier_audio()) ?>"></audio>
         </div>
+
+        <div class="volume-controls">
+            <div class="volume-void"></div>
+            <div class="volume-track"><div class="volume-fill" id="volume-fill"></div></div>
+            <span id="volume"></span>
+        </div>
     <?php endif; ?>
 </footer>
 <script src="js/lecteur.js"></script>

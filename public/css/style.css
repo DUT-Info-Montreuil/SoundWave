@@ -651,6 +651,13 @@ body {
     gap: 0.4rem;
 }
 
+.volume-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+}
+
 .player-buttons {
     display: flex;
     align-items: center;
@@ -678,7 +685,7 @@ body {
     font-size: 0.72rem;
 }
 
-.progress-track {
+.progress-track, .volume-track{
     flex: 1;
     height: 4px;
     background-color: #27203d;
@@ -686,19 +693,15 @@ body {
     overflow: hidden;
 }
 
-.progress-fill {
+.progress-fill, .volume-fill{
     width: 0;
     height: 100%;
     background-color: var(--purple-bright);
 }
 
-.player-extra {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0.6rem;
+.volume-void {
+    width: 50%;
 }
-
 
 @media (max-width: 960px) {
     .global-topbar {
