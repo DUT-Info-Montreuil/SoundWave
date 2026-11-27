@@ -33,7 +33,7 @@ class PisteListeVue extends Vue
                 <option value="">Tous les genres</option>
                 <?php foreach ($genres as $genre): ?>
                     <option value="<?= e((string) $genre) ?>" <?= $genreSelectionne === $genre ? 'selected' : '' ?>>
-                        <?= e((string) $genre) ?>
+                        <?= e(ucfirst((string) $genre)) ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -42,7 +42,7 @@ class PisteListeVue extends Vue
                 <option value ="">Tous les tags</option>
                 <?php foreach ($tags as $tag): ?>
                     <option value="<?= e((string) $tag) ?>" <?= $tagSelectionne === $tag ? 'selected' : '' ?>>
-                        <?= e((string) $tag) ?>
+                        <?= e(ucfirst((string) $tag)) ?>
                     </option>
                 <?php endforeach; ?>
             </select>
