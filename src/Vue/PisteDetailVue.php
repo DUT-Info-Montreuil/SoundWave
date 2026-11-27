@@ -45,7 +45,7 @@ class PisteDetailVue extends Vue
 
         <section class="detail-card">
             <audio class="detail-audio-player" controls preload="metadata">
-                <source src="audio/<?= e($piste->getFichier_audio()) ?>" type="audio/mpeg">
+                <source src="../data/pistes/<?= e($piste->getFichier_audio()) ?>" type="audio/mpeg">
                 Votre navigateur ne supporte pas la lecture audio HTML5.
             </audio>
 
