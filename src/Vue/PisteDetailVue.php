@@ -44,10 +44,6 @@ class PisteDetailVue extends Vue
         </section>
 
         <section class="detail-card">
-            <audio class="detail-audio-player" controls preload="metadata">
-                <source src="../data/pistes/<?= e($piste->getFichier_audio()) ?>" type="audio/mpeg">
-                Votre navigateur ne supporte pas la lecture audio HTML5.
-            </audio>
 
             <div class="detail-stats-actions">
                 <div class="detail-stats">
@@ -84,6 +80,6 @@ class PisteDetailVue extends Vue
             </div>
         </section>
         <?php
-        $this->afficherPage('SoundWave - ' . $piste->getTitre());
+        $this->afficherPage('SoundWave - ' . $piste->getTitre(), ['fichier' => $piste->getFichier_audio()]);
     }
 }

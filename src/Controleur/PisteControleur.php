@@ -47,7 +47,7 @@ class PisteControleur
        }
 
        if(!isset($_GET['like'])) {
-           $this->repo->incrementerEcoutes($id);
+           //$this->repo->incrementerEcoutes($id);
            $piste = $this->repo->findById($id) ?? $piste;
        }
 
