@@ -31,6 +31,10 @@ if ($module === 'piste' && $action === 'liste') {
         $controleur->formulaireConnexion();
     } elseif ($action === 'connecter') {
         $controleur->connecter();
+    } elseif ($action === 'validationDeconnexion') {
+        $controleur->validationDeconnexion();
+    } elseif ($action === 'deconnecter') {
+        $controleur->deconnecter();
     } else {
         http_response_code(404);
         echo 'Page introuvable';

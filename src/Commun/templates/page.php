@@ -35,12 +35,14 @@
         </form>
     </div>
 
-    <?php if(!isset($_SESSION['id_utilisateur'])): ?>
     <div class="topbar-auth">
+        <?php if(!isset($_SESSION['id_utilisateur'])): ?>
         <a href="index.php?module=utilisateur&action=formulaireInscription" class="btn-ghost">Inscription</a>
         <a href="index.php?module=utilisateur&action=formulaireConnexion" class="btn-purple">Connexion</a>
+        <?php else: ?>
+        <a href="index.php?module=utilisateur&action=validationDeconnexion" class="btn-deconnexion">Deconnexion</a>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
 </header>
 
 <div class="app-shell">

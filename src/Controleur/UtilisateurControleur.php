@@ -18,7 +18,6 @@ class UtilisateurControleur {
 	}
 
 	public function inscrire(): void {
-
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             die("Mauvaise méthode HTTP");
         }
@@ -74,6 +73,37 @@ class UtilisateurControleur {
 			die("Erreur lors de la connexion, email ou mot de passe incorrect");
 		}
 	}
+
+    public function validationDeconnexion(): void {
+        $this->userView->validationDeconnexion();
+    }
+
+    public function deconnecter() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            die("Mauvaise méthode HTTP");
+        }
+
+        if (!Csrf::verifierValeur($_POST['csrf'] ?? null)) {
+            http_response_code(403);
+            die('Jeton CSRF invalide');
+        }
+
+        $_SESSION = array();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 60,
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
+        }
+
+        session_destroy();
+        header('Location: index.php?module=piste&action=liste');
+        exit();
+    }
 }
 
 ?>
