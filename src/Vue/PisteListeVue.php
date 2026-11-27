@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../Commun/Vue.php';
+require_once __DIR__ . '/../Commun/Utilitaires.php';
 
 class PisteListeVue extends Vue
 {
@@ -58,12 +59,9 @@ class PisteListeVue extends Vue
             <?php else: ?>
                 <ul class="pistes-liste">
                     <?php foreach ($pistes as $piste): ?>
-                        <?php
-                        $initiale = mb_strtoupper(mb_substr((string) $piste['titre'], 0, 1, 'UTF-8'), 'UTF-8');
-                        ?>
                         <li class="piste-row">
                             <div class="piste-cover">
-                                <?= e($initiale !== '' ? $initiale : '♪') ?>
+                                <?= e(Utilitaires::initiale($piste['titre'])) ?>
                             </div>
 
                             <div class="piste-infos">

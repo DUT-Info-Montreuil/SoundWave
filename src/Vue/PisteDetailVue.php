@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../Commun/Vue.php';
 require_once __DIR__ . '/../Commun/Csrf.php';
 require_once __DIR__ . '/../Commun/Xss.php';
+require_once __DIR__ . '/../Commun/Utilitaires.php';
 
 class PisteDetailVue extends Vue
 {
@@ -15,7 +16,6 @@ class PisteDetailVue extends Vue
     ): void {
         $this->debutContenu();
         $idPiste = $piste->getIdPiste();
-        $initiale = mb_strtoupper(mb_substr($piste->getTitre(), 0, 1, 'UTF-8'), 'UTF-8');
         $nomsAuteurs = array_map(static fn(array $a): string => (string) $a['nom'], $auteurs);
         $texteAuteurs = !empty($nomsAuteurs) ? implode(', ', $nomsAuteurs) : 'Artiste inconnu';
         ?>
@@ -25,7 +25,7 @@ class PisteDetailVue extends Vue
 
         <section class="hero-banner detail-header">
             <div class="detail-header-main">
-                <div class="detail-cover"><?= e($initiale !== '' ? $initiale : '♪') ?></div>
+                <div class="detail-cover"><?= e(Utilitaires::initiale($piste->getTitre())) ?></div>
                 <div>
                     <span class="hero-tag">Piste audio • Publiée le <?= e($piste->getDate_publication()) ?></span>
                     <h1><?= e($piste->getTitre()) ?></h1>
@@ -80,6 +80,6 @@ class PisteDetailVue extends Vue
             </div>
         </section>
         <?php
-        $this->afficherPage('SoundWave - ' . $piste->getTitre(), ['fichier' => $piste->getFichier_audio()]);
+        $this->afficherPage('SoundWave - ' . $piste->getTitre(), ['piste' => $piste]);
     }
 }
