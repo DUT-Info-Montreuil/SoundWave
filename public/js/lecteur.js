@@ -1,14 +1,18 @@
+const bouton_play = document.getElementById('playbutton')
+
 const span_progession = document.getElementById('progression')
 const span_max_duration = document.getElementById('max-duration')
 
-const audio = document.getElementById('player')
-const bouton_play = document.getElementById('playbutton')
+const progress_fill = document.getElementById('progress-fill')
 
-audio.ontimeupdate = (() => {
-    span_progession.textContent = min_sec(audio.currentTime)
+const player = document.getElementById('player')
+
+player.ontimeupdate = (() => {
+    span_progession.textContent = minutes_secondes(player.currentTime)
+    progress_fill.style.width = (player.currentTime / player.duration) * 100 + "%"
 })
 
-function min_sec(temps) {
+function minutes_secondes(temps) {
     const minutes = Math.floor(temps / 60)
     const secondes = Math.floor(temps) % 60
 
@@ -16,13 +20,13 @@ function min_sec(temps) {
 }
 
 function playbutton() {
-    if (audio.paused) {
-        audio.play()
+    if (player.paused) {
+        player.play()
         bouton_play.textContent = '⏸';
-        span_max_duration.textContent = min_sec(audio.duration)
+        span_max_duration.textContent = minutes_secondes(player.duration)
     }
     else {
-        audio.pause()
+        player.pause()
         bouton_play.textContent = '▶'
     }
 }
