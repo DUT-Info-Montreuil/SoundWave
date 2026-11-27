@@ -4,7 +4,7 @@ require_once __DIR__ . '/../Commun/Vue.php';
 
 class PisteListeVue extends Vue
 {
-    public function afficher($pistes, $genres, $genreSelectionne)
+    public function afficher($pistes, $genres, $genreSelectionne, $tags, $tagSelectionne)
     {
         $this->debutContenu();
         ?>
@@ -39,10 +39,12 @@ class PisteListeVue extends Vue
             </select>
 
             <select name="tag" class="filter-select" aria-label="Tag">
-                <option value disabled selected hidden>Tag ▾</option>
-                <option value="chill" <?= (($_GET['tag'] ?? '') === 'chill') ? 'selected' : '' ?>>#chill</option>
-                <option value="remix" <?= (($_GET['tag'] ?? '') === 'remix') ? 'selected' : '' ?>>#remix</option>
-                <option value="instru" <?= (($_GET['tag'] ?? '') === 'instru') ? 'selected' : '' ?>>#instru</option>
+                <option value ="">Tous les tags</option>
+                <?php foreach ($tags as $tag): ?>
+                    <option value="<?= e((string) $tag) ?>" <?= $tagSelectionne === $tag ? 'selected' : '' ?>>
+                        <?= e((string) $tag) ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
 
             <button type="submit" class="btn-filter-submit">Filtrer</button>

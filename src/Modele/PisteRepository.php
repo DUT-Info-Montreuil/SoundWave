@@ -104,7 +104,55 @@ class PisteRepository extends BDD{
         $requete->execute(['genre' => $genre]);
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function tousLesTags(): array
+    {
+        $requete = self::$pdo->query("SELECT nom FROM tag ORDER BY nom ASC");
+        return $requete->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    public function pistesParTag(string $tag): array
+    {
+        $requete = self::$pdo->prepare(
+            "SELECT
+                    p.id_piste,
+                    p.titre,
+                    p.nombre_ecoutes,
+                    STRFTIME('%d/%m/%Y', p.date_publication) AS date_publication
+                FROM piste p
+                JOIN possede_tag USING (id_piste)
+                JOIN tag USING (id_tag)
+                WHERE tag.nom = :tag
+                ORDER BY 
+                    p.date_publication DESC, 
+                    p.id_piste DESC
+                LIMIT 10"
+        );
+        $requete->execute(['tag' => $tag]);
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function pistesParGenreEtTag(string $genre, string $tag): array
+    {
+        $requete = self::$pdo->prepare(
+            "SELECT
+                    p.id_piste,
+                    p.titre,
+                    p.nombre_ecoutes,
+                    STRFTIME('%d/%m/%Y', p.date_publication) AS date_publication
+                FROM piste p
+                JOIN possede_genre USING (id_piste)
+                JOIN genre USING (id_genre)
+                JOIN possede_tag USING (id_piste)
+                JOIN tag USING (id_tag)
+                WHERE genre.nom = :genre AND tag.nom = :tag 
+                ORDER BY 
+                    p.date_publication DESC, 
+                    p.id_piste DESC
+                LIMIT 10"
+        );
+        $requete->execute(['genre' => $genre,  'tag' => $tag]);
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
-
-
 ?>

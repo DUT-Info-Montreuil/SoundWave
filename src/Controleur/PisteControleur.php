@@ -17,14 +17,21 @@ class PisteControleur
     public function liste(): void
     {
         $genre = isset($_GET['genre']) ? trim((string) $_GET['genre']) : '';
-        $genres = $this->repo->tousLesGenres();
+        $tag = isset($_GET['tag']) ? trim((string) $_GET['tag']) : '';
 
-        if ($genre !== '') {
+        $genres = $this->repo->tousLesGenres();
+        $tags = $this->repo->tousLesTags();
+
+        if ($genre !== '' and $tag !== '') {
+            $pistes = $this->repo->pistesParGenreEtTag($genre, $tag);
+        } elseif ($genre !== '') {
             $pistes = $this->repo->pistesParGenre($genre);
-        } else {
+        }elseif ($tag !== '') {
+            $pistes = $this->repo->pistesParTag($tag);
+        }else{
             $pistes = $this->repo->dernieresPistes();
         }
 
-        $this->vue->afficher($pistes, $genres, $genre);
+        $this->vue->afficher($pistes, $genres, $genre, $tags, $tag);
     }
 }
